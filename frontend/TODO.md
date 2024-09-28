@@ -1,6 +1,6 @@
 # TODO List 
 
-- [ ] Create a basic layout - header to the website 
+- [X] Create a basic layout - header to the website 
 - [ ] Create a Event Card Component
     - [ ] Title 
     - [ ] Host name
@@ -9,3 +9,5 @@
     - [ ] Date and Time 
     - [ ] Picture
     - [ ] Tags
+    - [ ] Website Origin
+    - [ ] Link
