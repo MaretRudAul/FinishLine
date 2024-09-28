@@ -18,8 +18,9 @@ function App() {
   };
   const apiData = [mockupData, mockupData, mockupData];
   return (
-    <div className="">
+    <div>
       <Header />
+      <div className="flex justify-center items-center flex-wrap space-x-4 mt-10 mb-10">
       {apiData.map((data) => (
         <EventCard
           title={data.title}
@@ -34,6 +35,7 @@ function App() {
         />
       )
       )}
+      </div>
     </div>
   );
 }
