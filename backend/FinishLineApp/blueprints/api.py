@@ -4,3 +4,12 @@ from flask import (
 )
 
 website_bp = Blueprint('website', __name__)
+
+
+@website_bp.route('/api/v1/health', methods=['GET'])
+def health():
+    return jsonify({'status': 'ok'})
+
+@website_bp.route('/api//health', methods=['GET'])
+def health():
+    return jsonify({'status': 'ok'})
