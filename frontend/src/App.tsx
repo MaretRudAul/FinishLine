@@ -14,27 +14,27 @@ function App() {
     link: "https://sugma.com",
     websiteOrigin: 'Sugma',
     tag: ['tag1', 'tag2'],
-    pictureUrl: "picture"
+    pictureUrl: "https://static.campuslabsengage.com/discovery/images/events/social.jpg"
   };
   const apiData = [mockupData, mockupData, mockupData];
   return (
     <div>
       <Header />
       <div className="flex justify-center items-center flex-wrap space-x-4 mt-10 mb-10">
-      {apiData.map((data) => (
-        <EventCard
-          title={data.title}
-          host={data.host}
-          location={data.location}
-          description={data.description}
-          datetime={data.datetime}
-          link={data.link}
-          websiteOrigin={data.websiteOrigin}
-          tag={data.tag}
-          pictureUrl={data.pictureUrl}
-        />
-      )
-      )}
+        {apiData.map((data) => (
+          <EventCard
+            title={data.title}
+            host={data.host}
+            location={data.location}
+            description={data.description}
+            datetime={data.datetime}
+            link={data.link}
+            websiteOrigin={data.websiteOrigin}
+            tag={data.tag}
+            pictureUrl={data.pictureUrl}
+          />
+        )
+        )}
       </div>
     </div>
   );
