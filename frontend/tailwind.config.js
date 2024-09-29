@@ -7,6 +7,9 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: ['League Gothic', 'sans-serif'],
+      },
+      colors: {
+        darkred: '#8B0000'
       }
     },
   },
