@@ -9,7 +9,7 @@ const EventCard: React.FC<EventCardData> = ({
     <a
       href={link}
 
-      className="flex items-center justify-center flex flex-col justify-between flex-grow
+      className="flex items-center justify-center flex-col flex-grow
     h-full w-full sm:w-80 md:w-96 lg:w-1/3 xl:w-1/4 p-4 sm:p-6 md:p-8 text-lg sm:text-xl md:text-2xl gap-4 mb-4 minHeight:400px
     transform transition-transform duration-300 hover:scale-105
     border border-gray-300 bg-red-100 rounded-md wrap:wrap ">
@@ -17,7 +17,7 @@ const EventCard: React.FC<EventCardData> = ({
 
         {/* Title */}
         <div className="mb-2">
-          <h2 className="text-2xl font-bold text-gray-800 text-center ml-4 mr-4">{title}</h2>
+          <h2 className="text-2xl font-bold text-gray-800 text-center ml-4 mr-4 font-sans italic tracking-wide">{title}</h2>
         </div>
 
         {/* Picture */}
