@@ -1,6 +1,8 @@
 from .eventModel import Event, EventTag, event_tag_association
 from datetime import datetime
 from .. import db
+from FinishLineApp.tasks import scrape_anchorlink
+import re
 
 events = [
     Event(
@@ -9,7 +11,7 @@ events = [
         Location="Tech University Campus",
         Description="A 48-hour coding competition for students around the world.",
         Link='RandomLinkA',
-        Date=datetime(2024, 11, 1, 9, 0, 0),
+        Date="RandomDate1",
         Picture="https://example.com/images/hackathon2024.jpg",
         WebOrig="https://hackathon2024.tech.edu"
     ),
@@ -19,7 +21,7 @@ events = [
         Location="Downtown Conference Center",
         Description="A conference discussing the latest advancements in artificial intelligence.",
         Link='RandomLinkB',
-        Date=datetime(2024, 12, 5, 10, 0, 0),
+        Date="RandomDate2",
         Picture="https://example.com/images/ai_conference.jpg",
         WebOrig="https://ai-society.org/conference"
     ),
@@ -29,7 +31,7 @@ events = [
         Location="City Innovation Hub",
         Description="An event for startups to pitch their ideas to investors.",
         Link='RandomLinkC',
-        Date=datetime(2024, 10, 20, 18, 0, 0),
+        Date="RandomDate3",
         Picture="https://example.com/images/pitch_night.jpg",
         WebOrig="https://entrepreneurnetwork.org/pitchnight"
     )
@@ -67,4 +69,39 @@ def db_verify_sample_data():
         print(f"Event: {event.Title}")
         print(f"Tags: {[tag.name for tag in event.tags]}")
 
+def convert_to_custom_format(date_string: str) -> str:
+    cleaned_string = re.sub(r"\s+to\s*$", "", date_string)
+    dt = datetime.strptime(cleaned_string, "%A, %B %d %Y at %I:%M %p %Z")
+    formatted_string = dt.strftime("%H:%M, %A, %-m/%-d/%Y")
 
+    return formatted_string
+
+def db_fill_with_scrape():
+    data = scrape_anchorlink()
+    for item in data:
+        # tags_list = item['tags'].split(',')
+        event_tags = []
+
+        # for tag_name in tags_list:
+        #     if tag_name.strip():
+        #         tag = EventTag.query.filter_by(name=tag_name.strip()).first()
+        #         if not tag:
+        #             tag = EventTag(name=tag_name.strip())
+        #             db.session.add(tag)
+        #         event_tags.append(tag)
+
+        event = Event(
+            Title=item['title'],
+            Host=item['host'],
+            Location=item['location'],
+            Description=item['desc'],
+            Link=item['link'],
+            Date=convert_to_custom_format(item['date']),
+            Picture=item['image_url'],
+            WebOrig=item['origin'],
+            tags=event_tags
+        )
+
+        db.session.add(event)
+
+    db.session.commit()

@@ -1,7 +1,6 @@
 from .. import db
-from sqlalchemy import Integer, String, DateTime, ForeignKey, Table
+from sqlalchemy import Integer, String, ForeignKey, Table
 from sqlalchemy.orm import Mapped, mapped_column, relationship
-from datetime import datetime
 import validators
 
 event_tag_association = Table(
@@ -20,7 +19,7 @@ class Event(db.Model):
     Location: Mapped[str] = mapped_column(nullable=False)
     Description: Mapped[str] = mapped_column(nullable=False)
     Link: Mapped[str] = mapped_column(nullable=False)
-    Date: Mapped[datetime] = mapped_column(DateTime, nullable=False)
+    Date: Mapped[str] = mapped_column(nullable=False)
     Picture: Mapped[str] = mapped_column(nullable=False)
     WebOrig: Mapped[str] = mapped_column(nullable=False)
 
