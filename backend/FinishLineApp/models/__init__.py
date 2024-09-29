@@ -1,4 +1,4 @@
-from .eventModel import Event, EventTag, event_tag_association
+from .eventModel import Event
 from datetime import datetime
 from .. import db
 from FinishLineApp.tasks import scrape_anchorlink
@@ -37,60 +37,65 @@ events = [
     )
 ]
 
-tags = [
-    EventTag(name="Technology"),
-    EventTag(name="Artificial Intelligence"),
-    EventTag(name="Entrepreneurship"),
-    EventTag(name="Competition"),
-    EventTag(name="Conference"),
-    EventTag(name="Networking"),
-    EventTag(name="Education")
-]
-
 def db_fill_samples():
-    db.session.query(event_tag_association).delete()
     db.session.query(Event).delete()
-    db.session.query(EventTag).delete()
     db.session.commit()
-
-    db.session.add_all(tags)
-    db.session.commit()
-
-    events[0].tags = [tags[0], tags[3]]
-    events[1].tags = [tags[0], tags[1], tags[4]]
-    events[2].tags = [tags[2], tags[5]]
 
     db.session.add_all(events)
-    db.session.commit() 
+    db.session.commit()
 
 def db_verify_sample_data():
     all_events = Event.query.all()
     for event in all_events:
         print(f"Event: {event.Title}")
-        print(f"Tags: {[tag.name for tag in event.tags]}")
 
 def convert_to_custom_format(date_string: str) -> str:
-    cleaned_string = re.sub(r"\s+to\s*$", "", date_string)
-    cleaned_string = re.sub(r"\s\w{3}$", "", cleaned_string)
-    dt = datetime.strptime(cleaned_string, "%A, %B %d %Y at %I:%M %p")
-    formatted_string = dt.strftime("%I:%M %A, %m/%d/%Y")
-    formatted_string = re.sub(r'^0', '', formatted_string)
+    try:
+        cleaned_string = re.sub(r"\s+to\s*$", "", date_string)
+        cleaned_string = re.sub(r"\s\w{3}$", "", cleaned_string)
+        dt = datetime.strptime(cleaned_string, "%A, %B %d %Y at %I:%M %p")
+        formatted_string = dt.strftime("%I:%M %A, %m/%d/%Y")
+        formatted_string = re.sub(r'^0', '', formatted_string)
 
-    return formatted_string
+        return formatted_string
+    except:
+        return str
+
+def is_career_related(description):
+    career_keywords = [
+        "Job opportunities",
+        "Career development",
+        "Employment trends",
+        "Professional growth",
+        "Job market",
+        "Networking strategies",
+        "Career coaching",
+        "Resume building",
+        "Interview skills",
+        "Career planning",
+        "Remote jobs",
+        "Freelance opportunities",
+        "Salary negotiation",
+        "Career advancement",
+        "Job search strategies",
+        "Work-life balance",
+        "Skill development",
+        "Leadership roles",
+        "Career transitions",
+        "Industry insights"
+    ]
+
+    for word in career_keywords:
+        if word in description:
+            return True
+
 
 def db_fill_with_scrape():
     data = scrape_anchorlink()
     for item in data:
-        # tags_list = item['tags'].split(',')
-        event_tags = []
 
-        # for tag_name in tags_list:
-        #     if tag_name.strip():
-        #         tag = EventTag.query.filter_by(name=tag_name.strip()).first()
-        #         if not tag:
-        #             tag = EventTag(name=tag_name.strip())
-        #             db.session.add(tag)
-        #         event_tags.append(tag)
+        if not is_career_related(item['desc']):
+            continue
 
         event = Event(
             Title=item['title'],
@@ -101,7 +106,6 @@ def db_fill_with_scrape():
             Date=convert_to_custom_format(item['date']),
             Picture=item['image_url'],
             WebOrig=item['origin'],
-            tags=event_tags
         )
 
         db.session.add(event)
