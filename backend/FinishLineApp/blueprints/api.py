@@ -23,10 +23,9 @@ def health():
                 'location': event.Location,
                 'description': event.Description,
                 'link': event.Link,
-                'datetime': event.Date.strftime('%Y-%m-%d %H:%M:%S'),
+                'datetime': event.Date,
                 'pictureUrl': event.Picture,
                 'websiteOrigin': event.WebOrig,
-                'tag': [tag.name for tag in event.tags]
             }
             event_list.append(event_data)
 

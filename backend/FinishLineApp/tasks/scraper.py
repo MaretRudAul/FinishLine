@@ -7,7 +7,7 @@ import time
 import re
 
 def scrape_anchorlink():
-    BUTTON_CLICK_TIMES = 0
+    BUTTON_CLICK_TIMES = 5
     TIME_OUT = 10
     driver = webdriver.Chrome()
     driver.get("https://anchorlink.vanderbilt.edu/events")
