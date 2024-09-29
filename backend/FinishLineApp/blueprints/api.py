@@ -4,7 +4,7 @@ from flask import (
 
 from FinishLineApp.models import Event, EventTag
 
-api_bp = Blueprint('website', __name__)
+api_bp = Blueprint('api_bp', __name__)
 
 
 @api_bp.route('/api/fetch-events', methods=['GET'])

@@ -69,3 +69,5 @@ def db_verify_sample_data():
     for event in all_events:
         print(f"Event: {event.Title}")
         print(f"Tags: {[tag.name for tag in event.tags]}")
+
+    # compare with outside events
