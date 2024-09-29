@@ -63,26 +63,26 @@ def convert_to_custom_format(date_string: str) -> str:
 
 def is_career_related(description):
     career_keywords = [
-    "jobs",
-    "careers",
-    "employment",
-    "networking",
+    "job",
+    "career",
+    "employ",
+    "network",
     "growth",
-    "opportunities",
-    "skills",
+    "opportunit",
+    "skill",
     "resume",
-    "interviews",
+    "interview",
     "planning",
     "remote",
     "freelance",
-    "salary",
+    "salar",
     "advancement",
     "search",
     "balance",
-    "development",
+    "develop",
     "leadership",
-    "transitions",
-    "industry"
+    "transition",
+    "industr"
 ]
 
     for word in career_keywords:
