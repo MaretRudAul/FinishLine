@@ -2,7 +2,7 @@ from flask import (
     Blueprint, Response, jsonify
 )
 
-from FinishLineApp.models import Event, EventTag
+from FinishLineApp.models import Event
 
 api_bp = Blueprint('api_bp', __name__)
 

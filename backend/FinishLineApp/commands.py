@@ -1,6 +1,6 @@
 from flask import Flask
 from FinishLineApp import db
-from FinishLineApp.models import Event, EventTag, db_fill_samples, db_verify_sample_data, db_fill_with_scrape
+from FinishLineApp.models import Event, db_fill_samples, db_verify_sample_data, db_fill_with_scrape
 from datetime import datetime
 
 def register_commands(app: Flask):
