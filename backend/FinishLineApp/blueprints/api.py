@@ -3,13 +3,10 @@ from flask import (
     current_app, Response, copy_current_request_context, send_file, make_response
 )
 
-website_bp = Blueprint('website', __name__)
+api_bp = Blueprint('website', __name__)
 
 
-@website_bp.route('/api/v1/health', methods=['GET'])
+@api_bp.route('/api/v1/health', methods=['GET'])
 def health():
     return jsonify({'status': 'ok'})
 
-@website_bp.route('/api//health', methods=['GET'])
-def health():
-    return jsonify({'status': 'ok'})
