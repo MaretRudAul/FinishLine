@@ -71,8 +71,10 @@ def db_verify_sample_data():
 
 def convert_to_custom_format(date_string: str) -> str:
     cleaned_string = re.sub(r"\s+to\s*$", "", date_string)
-    dt = datetime.strptime(cleaned_string, "%A, %B %d %Y at %I:%M %p %Z")
-    formatted_string = dt.strftime("%H:%M, %A, %-m/%-d/%Y")
+    cleaned_string = re.sub(r"\s\w{3}$", "", cleaned_string)
+    dt = datetime.strptime(cleaned_string, "%A, %B %d %Y at %I:%M %p")
+    formatted_string = dt.strftime("%I:%M %A, %m/%d/%Y")
+    formatted_string = re.sub(r'^0', '', formatted_string)
 
     return formatted_string
 
