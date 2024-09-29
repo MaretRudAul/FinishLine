@@ -14,8 +14,8 @@ interface Header {
 
 const Header = () => {
   return (
-    <div className="p-4 text-center bg-black">
-      <header className="text-white text-3xl font-bold">Finish Line</header>
+    <div className="p-4 text-center bg-white">
+      <header className="text-black text-3xl font-bold">Finish Line</header>
     </div>
   );
 }
