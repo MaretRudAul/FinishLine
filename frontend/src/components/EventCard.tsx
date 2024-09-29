@@ -47,7 +47,7 @@ const EventCard: React.FC<EventCardData> = ({
         {/* Date and Time */}
         <div className="mb-2">
           <p className="text-gray-700 ml-4 mr-4 sm:text-sm">
-            <strong></strong> {datetime.toDateString()}, {datetime.toLocaleTimeString()}
+            <strong></strong> {datetime}, {datetime}
           </p>
         </div>
 

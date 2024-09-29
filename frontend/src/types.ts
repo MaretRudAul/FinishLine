@@ -4,7 +4,7 @@ export interface EventCardData {
   host: string;
   location: string;
   description: string;
-  datetime: Date;
+  datetime: string;
   pictureUrl: string;
   tag: string[];
   websiteOrigin: string;
