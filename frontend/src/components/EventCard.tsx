@@ -58,19 +58,6 @@ const EventCard: React.FC<EventCardData> = ({
         </p>
       </div>  */}
 
-        {/* Tags */}
-        {tag.length > 0 && (
-          <div className="mt-4 flex flex-wrap gap-2 ml-4 mr-4">
-            {tag.map((item, index) => (
-              <span
-                key={index}
-                className="inline-block bg-gray-200 text-gray-700 text-sm px-3 py-1 rounded-full"
-              >
-                {item}
-              </span>
-            ))}
-          </div>
-        )}
       </div>
     </a>
   )
@@ -78,5 +65,19 @@ const EventCard: React.FC<EventCardData> = ({
 };
 
 
+// Tags moved out of here
+// {/* Tags */}
+// {tag.length > 0 && (
+//   <div className="mt-4 flex flex-wrap gap-2 ml-4 mr-4">
+//     {tag.map((item, index) => (
+//       <span
+//         key={index}
+//         className="inline-block bg-gray-200 text-gray-700 text-sm px-3 py-1 rounded-full"
+//       >
+//         {item}
+//       </span>
+//     ))}
+//   </div>
+// )}
 
 export default EventCard;
