@@ -11,30 +11,30 @@ function App() {
     location: "Place",
     description: "Lorem Ipsum",
     datetime: new Date(),
-    link: "https://sugma.com",
+    link: "https://google.com",
     websiteOrigin: 'Sugma',
     tag: ['tag1', 'tag2'],
     pictureUrl: "https://static.campuslabsengage.com/discovery/images/events/social.jpg"
   };
-  const apiData = [mockupData, mockupData, mockupData];
+  const apiData = [mockupData, mockupData, mockupData,mockupData, mockupData, mockupData,mockupData, mockupData, mockupData,mockupData, mockupData, mockupData];
   return (
     <div>
       <Header />
-      <div className="flex justify-center items-center flex-wrap space-x-4 mt-10 mb-10">
-        {apiData.map((data) => (
-          <EventCard
-            title={data.title}
-            host={data.host}
-            location={data.location}
-            description={data.description}
-            datetime={data.datetime}
-            link={data.link}
-            websiteOrigin={data.websiteOrigin}
-            tag={data.tag}
-            pictureUrl={data.pictureUrl}
-          />
-        )
-        )}
+      <div className="flex justify-center items-center flex-wrap gap-4 mt-5">
+      {apiData.map((data) => (
+        <EventCard
+          title={data.title}
+          host={data.host}
+          location={data.location}
+          description={data.description}
+          datetime={data.datetime}
+          link={data.link}
+          websiteOrigin={data.websiteOrigin}
+          tag={data.tag}
+          pictureUrl={data.pictureUrl}
+        />
+      )
+      )}
       </div>
     </div>
   );
