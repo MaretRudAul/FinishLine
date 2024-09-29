@@ -1,5 +1,5 @@
 from flask import Flask
-from .extensions import db, migrate
+from .extensions import db, migrate, cors
 from datetime import datetime
 
 
@@ -11,6 +11,7 @@ def create_app(config_name='DevConfig'):
 
     db.init_app(app)
     migrate.init_app(app, db)
+    cors.init_app(app, resources={r"/api/*": {"origins": "http://localhost:3000"}})
 
     from .models import Event, EventTag, db_fill_samples, db_verify_sample_data
 
@@ -18,7 +19,7 @@ def create_app(config_name='DevConfig'):
         db.create_all()
 
         db_fill_samples()
-        db_verify_sample_data()
+        # db_verify_sample_data()
     
     from .blueprints import api_bp
 
